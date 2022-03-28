@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>ToDo List App Form</h1>
+<div mat-dialog-content>
+    <form [formGroup]="todoForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Task Name</mat-label>
+            <input formControlName="Name" matInput placeholder="Enter Task Name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Task Description</mat-label>
+            <input formControlName="Task" matInput placeholder="Enter Task Description">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button mat-raised-button color="primary" (click)="addTask()">{{actionBtn}}</button>
+</div>
