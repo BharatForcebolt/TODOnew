@@ -26,3 +26,7 @@ mat-slide-toggle{
 .mat-app-background{
     height: 100%;
 }
+
+mat-icon{
+    margin-right: 10px;
+}
