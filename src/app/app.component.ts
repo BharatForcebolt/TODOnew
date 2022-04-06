@@ -14,6 +14,7 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class AppComponent implements OnInit{
   title = 'TODOnew';
+  isDarkTheme = false
   displayedColumns: string[] = ['Name', 'Task', 'action'];
   dataSource!: MatTableDataSource<any>;
 
@@ -80,5 +81,9 @@ export class AppComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  darkEnable(){
+    this.isDarkTheme = !this.isDarkTheme
+    // console.log(this.isDarkTheme);
   }
 }
