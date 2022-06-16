@@ -3,13 +3,17 @@
     <form [formGroup]="todoForm">
         <mat-form-field appearance="outline">
             <mat-label>Task Name</mat-label>
-            <input formControlName="Name" matInput placeholder="Enter Task Name">
+            <input formControlName="Name" [(ngModel)]="taskName" matInput placeholder="Enter Task Name">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Task Description</mat-label>
-            <input formControlName="Task" matInput placeholder="Enter Task Description">
+            <input formControlName="Task" [(ngModel)]="taskDescription" matInput placeholder="Enter Task Description">
         </mat-form-field>
     </form>
+</div>
+
+<div class="row" *ngIf="emptyFieldErrorMessageFlag">
+    Please fill up all mandatory fields
 </div>
 <div mat-dialog-actions [align]="'end'">
     <button mat-raised-button color="warn" mat-dialog-close>Close</button>

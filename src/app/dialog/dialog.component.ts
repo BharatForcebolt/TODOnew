@@ -10,7 +10,9 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
-
+  taskName : string = '';
+  taskDescription : string = '';
+  emptyFieldErrorMessageFlag : boolean = false;
   todoForm !: FormGroup;
   actionBtn: string = 'Add Task'
   constructor(private formBuilder: FormBuilder, 
@@ -25,8 +27,11 @@ export class DialogComponent implements OnInit {
     })
     if(this.editRow){
       this.actionBtn = 'Update'
-      this.todoForm.controls['Name'].setValue(this.editRow.Name);
-      this.todoForm.controls['Task'].setValue(this.editRow.Task);
+      // this.todoForm.controls['Name'].setValue(this.editRow.Name);
+      // this.todoForm.controls['Task'].setValue(this.editRow.Task);
+      this.taskName = this.editRow.Name;
+      this.taskDescription = this.editRow.Task;
+
     }
     
   }
@@ -49,16 +54,22 @@ export class DialogComponent implements OnInit {
     }
   }
   updateData(){
-    this.api.putData(this.todoForm.value, this.editRow._id).subscribe({
-      next:(res)=>{
-        alert("Task Updated Successfully");
-        this.todoForm.reset();
-        this.dialogRef.close("update")
-      },
-      error:(err)=>{
-        alert("Error in updating "+ err)
-      }
-    })
+    if(this.taskDescription.trim().length && this.taskName.trim().length){
+
+      this.api.putData(this.todoForm.value, this.editRow._id).subscribe({
+        next:(res)=>{
+          alert("Task Updated Successfully");
+          this.todoForm.reset();
+          this.dialogRef.close("update")
+        },
+        error:(err)=>{
+          alert("Error in updating "+ err)
+        }
+      })
+    } else {
+      // console.log("Some data empty");
+      this.emptyFieldErrorMessageFlag=true;
+    }
   }
   
 }

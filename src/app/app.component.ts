@@ -40,6 +40,7 @@ export class AppComponent implements OnInit{
   getAllData(){
     this.api.getData().subscribe({
       next:(res)=>{
+        console.log("responce",res);
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

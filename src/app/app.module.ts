@@ -21,7 +21,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     AppComponent,
-    DialogComponent
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
